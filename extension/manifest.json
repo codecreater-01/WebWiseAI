@@ -1,0 +1,18 @@
+
+{
+  "manifest_version": 3,
+  "name": "WebWise AI",
+  "version": "1.0.0",
+  "description": "Ask questions about webpages using local AI.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:8001/*"
+  ],
+  "action": {
+    "default_title": "WebWise AI",
+    "default_popup": "popup.html"
+  }
+}

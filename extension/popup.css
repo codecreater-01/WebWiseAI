@@ -1,0 +1,174 @@
+:root {
+  --bg: #f1f5f9;
+  --surface: #ffffff;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --line: #dbe3ec;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-soft: #eaf1ff;
+  --focus: #60a5fa;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --ink: #e2e8f0;
+    --muted: #94a3b8;
+    --line: #334155;
+    --accent: #3b82f6;
+    --accent-hover: #60a5fa;
+    --accent-soft: #1e3a6e;
+    --focus: #93c5fd;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  width: 360px;
+  margin: 0;
+  padding: 20px;
+  font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* Title (works with the original <h2> or a new <h1>) */
+h1,
+main > h2 {
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+}
+
+/* Subtitle */
+header p,
+main > h2 + p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Buttons: base style is the primary action */
+button {
+  display: block;
+  width: 100%;
+  padding: 11px 14px;
+  margin: 10px 0 0;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, transform 0.1s;
+}
+button:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+button:active { transform: translateY(1px); }
+
+/* Summarize is the quieter, secondary action */
+#summarize {
+  margin-top: 0;
+  background: var(--accent-soft);
+  border-color: transparent;
+  color: var(--accent);
+}
+#summarize:hover { border-color: var(--accent); background: var(--accent-soft); }
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+button:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Divider (used in the revised HTML) */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Question box */
+textarea {
+  display: block;
+  width: 100%;
+  min-height: 84px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  resize: vertical;
+  transition: border-color 0.15s;
+}
+textarea::placeholder { color: var(--muted); }
+textarea:focus { border-color: var(--accent); }
+
+/* Status line: hidden until JS writes something */
+#status {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+#status:empty { display: none; }
+
+/* Answer */
+section { margin-top: 16px; }
+section h2 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+#answer {
+  min-height: 64px;
+  max-height: 260px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  background: var(--surface);
+  line-height: 1.55;
+}
+section #answer { margin-top: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
